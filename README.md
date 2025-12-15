@@ -130,7 +130,7 @@ devmentor-ai/
 ## Testes
 
 ```bash
-pytest/ app.py
+pytest app/
 ```
 
 
@@ -141,7 +141,5 @@ pytest/ app.py
 - Tratamento de erros mais rico e mensagens orientativas na UI.
 - Autenticação e autorização entre agentes (mTLS / tokens de serviço).
 - Melhorar integração entre agentes
-- Implementar RAG
-- 
-
-
+- Implementar RAG 
+-

@@ -3,6 +3,7 @@ Agente A2A base que todos os agentes especializados herdam.
 Fornece funcionalidades comuns como acesso ao LLM e ferramentas MCP.
 """
 import os
+import json
 import requests
 from typing import Dict, Any, Optional, List
 from openai import OpenAI
