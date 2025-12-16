@@ -1,36 +1,6 @@
 # DevMentor AI
 
-Plataforma de mentoria técnica multi-agente construída sobre **MCP (Model Context Protocol)** e **A2A (Agent-to-Agent Protocol)**, com interface web em **Streamlit**. Cada agente roda como um microserviço independente, podendo consumir ferramentas MCP expostas via HTTP.
-
-## Visão Geral da Arquitetura
-
-```
-┌──────────────────────┐          ┌───────────────────────────────┐
-│      Usuário         │          │       Interface Streamlit     │
-│ (navegador/Chat UI)  │◄────────►│        (app.py, porta 8501)   │
-└──────────────────────┘          └──────────────┬────────────────┘
-                                                A2A (HTTP/JSON)
-                                     ┌───────────┴───────────┐
-                                     │ Coordenador A2A       │
-                                     │ (porta 8000)          │
-                                     └───────────┬───────────┘
-                                 A2A (HTTP/JSON)│ fan-out
-        ┌───────────────────────┬───────────────┼───────────────────────┐
-        │                       │               │                       │
-┌───────────────┐      ┌───────────────┐  ┌───────────────┐     ┌───────────────┐
-│ Algo Int.     │      │ ML/System Int.│  │ Concept Tutor │ ... │ Soft Skills    │
-│ (porta 8001)  │      │ (porta 8002)  │  │ (porta 8003)  │     │ (porta 8005)  │
-└───────────────┘      └───────────────┘  └───────────────┘     └───────────────┘
-        │                       │               │                       │
-        └───────────────┬───────┴───────┬───────┴───────────────┬───────┘
-                        │ Ferramentas MCP (HTTP)
-                        │
-                ┌───────────────────────────────┐
-                │  Servidor MCP (porta 5000)    │
-                │  Tools: quiz, code snippet,   │
-                │  doc search                   │
-                └───────────────────────────────┘
-```
+Sistema multi-agente de mentoria técnica construído sobre **MCP (Model Context Protocol)** e **A2A (Agent-to-Agent Protocol)**.
 
 ### Componentes-chave
 - **Interface (app.py)**: UI em Streamlit; seleciona persona, envia mensagens e mostra respostas. Faz diagnóstico automático de portas/saúde antes de enviar mensagens.
@@ -81,7 +51,7 @@ $env:OPENROUTER_API_KEY="sua-chave-aqui"
 ```
 
 ## Execução Local
-1) **Subir servidores (MCP + agentes + coordenador)**  
+1) **Subir servidores (MCP + agentes + coordenador)**   -> será conteinerizado
 ```bash
 python start_servers.py
 ```
@@ -141,5 +111,4 @@ pytest app/
 - Tratamento de erros mais rico e mensagens orientativas na UI.
 - Autenticação e autorização entre agentes (mTLS / tokens de serviço).
 - Melhorar integração entre agentes
-- Implementar RAG 
--
+- Implementar RAG
